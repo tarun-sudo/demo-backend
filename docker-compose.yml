@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: .
+    container_name: demo-backend
+    ports:
+      - "8080:8080"
+    networks:
+      demo-network:
+        aliases:
+          - backend
+          - demo-backend
+
+networks:
+  demo-network:
+    external: true

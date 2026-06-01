@@ -1,0 +1,85 @@
+setup:
+  ignoreGitEvents: false
+  releaseRefs:
+    - main
+    - master
+    - develop
+
+owner:
+  group: replace-with-team-or-namespace
+  roles:
+    namespaceUsers:
+      - replace-with-team-or-namespace
+
+alerts:
+  slackChannel:
+    - replace-with-slack-channel
+
+notify:
+  slack:
+    channelName: replace-with-slack-channel
+
+profiles:
+  - springboot-web
+  - docker
+
+build:
+  skip: false
+  artifact: demo-backend
+  docker:
+    app:
+      dockerFile: Dockerfile
+      image: replace-with-registry/demo-backend
+      tag: latest
+      ports:
+        - 8080
+
+deploy:
+  skip: false
+  environment: replace-with-environment
+  image: replace-with-registry/demo-backend:latest
+  global:
+    enabled: true
+    regions:
+      primary: eastus
+      secondary:
+        - westus2
+    trafficPolicy:
+      mode: active-active
+      failover: automatic
+    rollout:
+      strategy: rolling
+      maxUnavailable: 1
+      maxSurge: 1
+    tls:
+      enabled: true
+      certificateRef: replace-with-certificate-reference
+  ports:
+    http: 8080
+  scaling:
+    minPods: 1
+    maxPods: 2
+  routing:
+    type: internal
+    exposure: private
+    protocol: http
+    port: 8080
+    pathPrefix: /api
+    rewritePath: false
+    hostnames:
+      - api.replace-with-domain.com
+  healthChecks:
+    readiness:
+      path: /
+      port: 8080
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 3
+      failureThreshold: 3
+    liveness:
+      path: /
+      port: 8080
+      initialDelaySeconds: 30
+      periodSeconds: 20
+      timeoutSeconds: 3
+      failureThreshold: 3
