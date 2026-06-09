@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "Demo Backend API",
+    "_postman_id": "8f4f3c12-5f8b-4b19-9474-5f8e2b8f8f10",
+    "description": "Collection for demo backend endpoints: items CRUD, CSV upload, tables list, and table content.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Items - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/items",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Items - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"postman item\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/items",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Items - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"updated from postman\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/items/{{itemId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "items",
+            "{{itemId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Items - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/items/{{itemId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "items",
+            "{{itemId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "CSV - Upload (GET /)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/?file={{filePath}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            ""
+          ],
+          "query": [
+            {
+              "key": "file",
+              "value": "{{filePath}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CSV - Upload (POST /)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/?file={{filePath}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            ""
+          ],
+          "query": [
+            {
+              "key": "file",
+              "value": "{{filePath}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tables - List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/tables",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "tables"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tables - Content By File",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/table-content?file={{fileName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "table-content"
+          ],
+          "query": [
+            {
+              "key": "file",
+              "value": "{{fileName}}"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
